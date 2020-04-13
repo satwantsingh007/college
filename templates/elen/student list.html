@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1 align="center">All Student Detail</h1>
+
+              <table align="center" border="1" width="150">
+                  <tr>
+                      <th width="150">name</th>
+                      <th width="150">contact</th>
+                      <th width="150">email</th>
+                      <th width="200">department</th>
+                      <th width="150">password</th>
+                      <th width="150">update</th>
+                      <th width="150">add</th>
+                      <th width="150">delete</th>
+                  </tr>
+                  {% for x in student %}
+                      <tr>
+                        <th width="150">{{ x.name }}</th>
+                        <th width="150">{{ x.contact }}</th>
+                        <th width="150">{{ x.email }}</th>
+                        <th width="200">{{ x.department }}</th>
+                        <th width="150">{{ x.password }}</th>
+                        <td>
+                        <form action="/studupdate/{{ x.email }}" method="post">
+                            {% csrf_token %}
+                                <input type="submit" value="update">
+
+                        </form>
+                        </td>
+                        <td><a href="//">Delete</a> </td>
+                        <td><a href="//">Add</a> </td>
+
+                      </tr>
+                  {% endfor %}
+              </table>
+
+{% if studentupdate %}
+    <form action="" method="post">
+         {% csrf_token %}
+         {{ form.as_p }}
+    <input type="submit" value="update">
+    </form>
+{% endif %}
+
+
+</body>
+
+</html>
